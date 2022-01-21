@@ -1,0 +1,16 @@
+
+#size{
+    width: 450px;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.ui.fluid.button.box-blue{
+    background-color: #4730db;
+    color: #ffffffff;
+}
+#message{
+    width: 450px;
+}
