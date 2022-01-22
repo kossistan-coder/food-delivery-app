@@ -15,7 +15,7 @@
                 </div>
                 <div class="extra content">
                     <span class="left floated" v-show="root == 0">
-                        <a class="ui left labeled mini blue icon button" @click="add(id)" >
+                        <a class="ui left labeled mini blue icon button" @click="add(this.burger)" >
                             <i class="shopping cart icon"></i>
                             Add to card
                         </a>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import axios from "axios"
+
 export default {
     data() {
         return {
@@ -41,46 +41,20 @@ export default {
     props:{
         image:String,
         nom:String,
-        time:Number,
+        time:String,
         price:Number,
         description:String,
         root:Number,
-        id:Number,
+        burger:[],
         panier:[],
 
      
     },
-    mounted() {
- 
-         axios.get('/api/posts').then((response)=>{
-                this.burgers = response.data.posts
-               
-            })
-         
 
-            this.burgers.forEach(element => {
-                element['nombre'] = 0
-            });
-    },
     methods: {
-        add(id){
+        add(burger){
             
-            this.burgers.forEach(element => {
-                if (element.id == id) {
-                    
-                    if (this.temp.includes(element)) {
-                        console.log(this.temp.indexOf(element));
-                    }else{
-                        this.temp.push(element)
-                    }
-                    
-                    
-                }
-     
-                
-            });
-    
-
+            console.log(burger);
             
         }
     },

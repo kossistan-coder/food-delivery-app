@@ -131,7 +131,7 @@ import axios from 'axios'
             return{
                 routes:'',
                 user:{},
-                foods:{},
+                foods:[],
                 cards:[
                   {
                       icon:"balance scale",
@@ -158,12 +158,14 @@ import axios from 'axios'
         },
         mounted() {
             this.user = this.$store.getters.user
-            this.routes = '/api/admin/'+this.$store.getters.user.id+'/limit/3'
+            this.routes = '/api/admin/'+this.$store.state.user.id+'/limit/'+3
             console.log(this.routes);
             axios.get(this.routes).then(response=>{
                 this.foods = response.data.posts
-                console.log(this.foods);
+               
             })
+            console.log(this.user);
+           
         },
     }
 </script>

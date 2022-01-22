@@ -21,4 +21,8 @@ new Vue({
   render: h => h(App),
   router,
   store,
+  created(){
+    store.dispatch('getBurgers')
+    
+  }
 }).$mount('#app')
