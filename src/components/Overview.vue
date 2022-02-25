@@ -11,7 +11,7 @@
                 </div>
                 <br>
                 <div>
-                    <div class="ui segment">
+                    <div class="ui segment" :class="{'loading':place}">
                         <div class="flex-2">
                             <div>
                                 <sui-header>Recent Posts</sui-header>
@@ -49,7 +49,7 @@
             </div>
             
             <div>
-                <div class="ui segment">
+                <div class="ui segment" >
                     <sui-header>
                         List of admin
                     </sui-header>
@@ -130,6 +130,7 @@ import axios from 'axios'
         data(){
             return{
                 routes:'',
+                place:true,
                 user:{},
                 foods:[],
                 cards:[
@@ -155,16 +156,17 @@ import axios from 'axios'
         components:{
             Card,
             Uiheader
-        },
+        },      
         mounted() {
             this.user = this.$store.getters.user
-            this.routes = '/api/admin/'+this.$store.state.user.id+'/limit/'+3
-            console.log(this.routes);
+            this.routes = '/api/admin/'+this.$store.getters.user.id+'/limit/'+3
+           
             axios.get(this.routes).then(response=>{
                 this.foods = response.data.posts
+                this.place = false
                
             })
-            console.log(this.user);
+           
            
         },
     }

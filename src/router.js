@@ -11,7 +11,7 @@ import Settings from './components/Settings.vue'
 import Overview from './components/Overview.vue'
 import Posts from './components/Posts.vue'
 import Panier from './components/Panier.vue'
-
+import Update from './components/Update.vue'
 vue.use(VueRouter)
 
 function loggedIn(){
@@ -52,7 +52,13 @@ let routes= [
           },{
             path:'posts',
             component:Posts,
-            name:'posts'
+            name:'posts',
+            
+          },
+          {
+            path:'posts/update',
+            component:Update,
+            name:'update'
           }
           
           
@@ -62,7 +68,8 @@ let routes= [
       path:'/panier',
       component:Panier,
       name:'panier'
-  },
+    },
+    
 ]
 
 

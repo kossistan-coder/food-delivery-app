@@ -14,3 +14,8 @@
 #message{
     width: 450px;
 }
+.back{
+    background-color: #f3f4f6;
+    margin-top: 40px;
+    padding-bottom: 70px;
+}

@@ -6,7 +6,7 @@
                 {{msg}}
             </div>
             
-                    <div class="ui segment" >
+                    <div class="ui segment" :class="{'loading':place}">
                         <div class="flex-2">
                             <div>
                                 <sui-header>All Posts</sui-header>
@@ -37,7 +37,7 @@
                                     </span>
                                     <span class="right floated">
                                         <div class="ui mini red button" @click="sup(food.id)">Delete</div>
-                                        <div class="ui mini blue button">Modify</div>
+                                        <router-link :to="{name:'update',params:{id:food.id,foods:foods}}" class="ui mini blue button">Modify</router-link>
                                     </span>
                                 </sui-item-extra>
                             </sui-item-content>
@@ -57,7 +57,8 @@ import axios from 'axios'
                 routes:"",
                 del_rout:"",
                 msg:'',
-                user:{}
+                user:{},
+                place : true
             }
         },
         mounted() {
@@ -65,6 +66,7 @@ import axios from 'axios'
             this.user = this.$store.getters.user
             axios.get(this.routes).then(response=>{
                 this.foods = response.data.posts
+                this.place = false
             })
         },
 

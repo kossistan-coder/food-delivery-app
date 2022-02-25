@@ -1,6 +1,6 @@
 <template>
     <div>
-        
+       
         <div class="flex-space" v-show="user.id ==1">
             <div>
                 <div class="ui label"><sui-header>Add new admin</sui-header></div>
@@ -79,31 +79,31 @@
                     <div v-if="Object.keys(post_error).length !==0">
                         <div class="ui negative message">
                             <i class="close icon" @click="closePost"></i>
-                    <sui-list v-for="error in post_error.name" :key="error.name" bulleted>
-                        <sui-list-item>
-                            {{error}}
-                        </sui-list-item>
-                    </sui-list>
-                    <sui-list v-for="error in post_error.description" :key="error.description" bulleted>
-                        <sui-list-item>
-                            {{error}}
-                        </sui-list-item>
-                    </sui-list>
-                    <sui-list v-for="error in post_error.delivery_time" :key="error.delivery_time" bulleted>
-                        <sui-list-item>
-                            {{error}}
-                        </sui-list-item>
-                    </sui-list>
-                    <sui-list v-for="error in post_error.price" :key="error.price" bulleted>
-                        <sui-list-item>
-                            {{error}}
-                        </sui-list-item>
-                    </sui-list>
-                    <sui-list v-for="error in post_error.image" :key="error.image" bulleted>
-                        <sui-list-item>
-                            {{error}}
-                        </sui-list-item>
-                    </sui-list>
+                            <sui-list v-for="error in post_error.name" :key="error.name" bulleted>
+                                <sui-list-item>
+                                    {{error}}
+                                </sui-list-item>
+                            </sui-list>
+                            <sui-list v-for="error in post_error.description" :key="error.description" bulleted>
+                                <sui-list-item>
+                                    {{error}}
+                                </sui-list-item>
+                            </sui-list>
+                            <sui-list v-for="error in post_error.delivery_time" :key="error.delivery_time" bulleted>
+                                <sui-list-item>
+                                    {{error}}
+                                </sui-list-item>
+                            </sui-list>
+                            <sui-list v-for="error in post_error.price" :key="error.price" bulleted>
+                                <sui-list-item>
+                                    {{error}}
+                                </sui-list-item>
+                            </sui-list>
+                            <sui-list v-for="error in post_error.image" :key="error.image" bulleted>
+                                <sui-list-item>
+                                    {{error}}
+                                </sui-list-item>
+                            </sui-list>
                         </div>
                     </div>
                 </div>
@@ -116,6 +116,7 @@
                             <label for="">Name</label>
                             <input type="text" placeholder="Enter your name" name="name">
                         </div>
+                        
                         <div class="field">
                             <label for="">Time</label>
                             <input type="number" placeholder="Time of deliver" name="time">
@@ -132,6 +133,20 @@
                         <div class="field">
                             <label for="">Article description</label>
                             <textarea name="description"></textarea>
+                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                <input type="radio" name="category" value="1">
+                                <label for="">Farmming product</label>
+                            </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                <input type="radio" name="category" value="0">
+                                <label for="">Burger</label>
+                            </div>
+                            </div>
                         </div>
                         <div class="field">
                             <button type="submit" class="ui submit button" :class="{'loading':p_load}" style="background-color: #4730db;color:#ffffff" >
@@ -158,6 +173,17 @@ import { mapGetters } from "vuex"
                     password:'',
                     password_confirmation:''
                 },
+                category: null,
+                options: [
+                    {
+                    text: 'Produits agricole',
+                    value: 1,
+                    },
+                    {
+                    text: 'Burger',
+                    value: 0,
+                    },
+                ],
                 
                 noti:'',
                 errors:{},
@@ -197,7 +223,9 @@ import { mapGetters } from "vuex"
             publish(){
                 this.p_load = true
                 let vm =this
+               
                 let formData = new FormData(vm.$refs.form)
+             
                 // eslint-disable-next-line no-unused-vars
                 axios.get('/sanctum/csrf-cookie').then(response =>{
                     // eslint-disable-next-line no-unused-vars
