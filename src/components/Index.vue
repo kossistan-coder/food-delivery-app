@@ -66,7 +66,7 @@
             <div class="marge " style="padding-top:40px;text-align:center">
                 <sui-header size="huge">
                     <sui-header-subheader style="color:orange">
-                             Our dishes
+                             Our main dishes
                         </sui-header-subheader>
                         Popular dishes
                         
